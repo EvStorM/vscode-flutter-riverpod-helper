@@ -3,11 +3,11 @@
   "displayName": "Flutter riverpod Helpers",
   "description": "Helper utilities for flutter projects",
   "version": "0.1.2",
-  "publisher": "mthuong",
+  "publisher": "evils",
   "icon": "media/flutter.png",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mthuong/vscode-flutter-riverpod-helper"
+    "url": "https://github.com/EvStorM/vscode-flutter-riverpod-helper"
   },
   "engines": {
     "vscode": "^1.76.1"
