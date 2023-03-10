@@ -1,22 +1,66 @@
 {
-  "Create a freezed Class": {
-    "prefix": "frc",
+  "Create a riverpod Provider Class": {
+    "prefix": "ric",
+    "body": ["@riverpod", "class $1 extends _$$1 {", "@override", "$1 build() {", "\t return $1;", "}", "", "}"],
+    "description": "Creates a riverpod Provider Class inside a dartlang file. "
+  },
+  "Create a riverpod Provider return": {
+    "prefix": "rir",
+    "body": ["@riverpod", "$1 $1($1Ref ref) {", "\tfinal $1 = ref.watch($1Provider);", "", "\treturn $1;", "", "}"],
+    "description": "Creates a riverpod Provider Class inside a dartlang file. "
+  },
+  "Create a riverpod (Async)NotifierProvider Class": {
+    "prefix": "ria",
     "body": [
-      "@freezed",
-      "class $1 with _$$1 {",
+      "@riverpod",
+      "class Async$1 extends _$Async$1 {",
       "",
-      "\tfactory $1() = _$1;",
+      "Future<$1> _fetch$1() async {",
+      "final json = await http.get('api/todos');",
+      "final data = jsonDecode(json) as List<Map<String, dynamic>>;",
+      "return data.map((item) => $1.fromJson(item)).toList();",
+      "}",
+      "@override",
+      "FutureOr<$1> build() async {",
+      "\t return _fetch$1();",
+      "}",
       "",
-      "\tfactory $1.fromJson(Map<String, dynamic> json) => _$$1FromJson(json);",
-      "\tMap<String, dynamic> toJson() => _$$1ToJson(this);",
       "}"
     ],
-    "description": "Creates a freezed Class inside a dartlang file. Useful for flutter and dart for web."
+    "description": "Creates a riverpod  (Async)NotifierProvider Class inside a dartlang file."
   },
-  "Setup file for freezed annotation & Code Gen": {
-    "prefix": "frf",
+  "Create a riverpod FutureProvider": {
+    "prefix": "rifp",
+    "body": [
+      "@riverpod",
+      "Future<$1> fetch$1(Fetch$1Ref ref) async {",
+      "\tfinal json = await http.get('api/todos');",
+      "",
+      "\treturn $1.fromJson(json);",
+      "",
+      "}"
+    ],
+    "description": "Creates a riverpod FutureProvider Class inside a dartlang file. "
+  },
+  "Create a riverpod FutureProvider required": {
+    "prefix": "rifr",
+    "body": [
+      "@riverpod",
+      "Future<List<$1>> fetch$1(Fetch$1Ref ref, {required int page, int limit = 10}) async {",
+      "\tfinal dio = Dio();",
+      "\tfinal response = await dio.get('https://my-api/products?page=$page&limit=$limit');",
+      "\tfinal json = response.data! as List;",
+      "\treturn json.map((item) => $1.fromJson(item)).toList();",
+      "",
+      "}"
+    ],
+    "description": "Creates a riverpod FutureProvider required inside a dartlang file. "
+  },
+  "Setup file for riverpod annotation & Code Gen": {
+    "prefix": "rif",
     "body": [
       "import 'package:freezed_annotation/freezed_annotation.dart';",
+      "import 'package:riverpod_annotation/riverpod_annotation.dart';",
       "",
       "part '$TM_FILENAME_BASE.freezed.dart';",
       "part '$TM_FILENAME_BASE.g.dart';",
@@ -27,8 +71,17 @@
       "\tfactory $1() = _$1;",
       "",
       "\tfactory $1.fromJson(Map<String, dynamic> json) => _$$1FromJson(json);",
+      "}",
+      "",
+      "@riverpod",
+      "class $1Data extends _$$1Data {",
+      "@override",
+      "$1 build() {",
+      "\t return $1();",
+      "}",
+      "",
       "}"
     ],
-    "description": "Setup a file which will have freezed annotated classes."
+    "description": "Setup a file which will have riverpod annotated classes."
   }
 }

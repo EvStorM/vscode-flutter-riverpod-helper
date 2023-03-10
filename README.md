@@ -1,8 +1,8 @@
 # Flutter Freezed Helpers VSCode Extension
 
-This extension currently helps you to easily write `freezed` annotated classes and allows you to run code generation for those classes. You can also watch the files so that code generation is faster.
+This extension currently helps you to easily write `riverpod` annotated classes and allows you to run code generation for those classes. You can also watch the files so that code generation is faster.
 
-👉 <https://marketplace.visualstudio.com/items?itemName=mthuong.vscode-flutter-freezed-helper>
+<!-- 👉 <https://marketplace.visualstudio.com/items?itemName=mthuong.vscode-flutter-freezed-helper> -->
 
 ## Setup your flutter project for code generation for JSONSerializable annotations
 
@@ -13,12 +13,16 @@ dev_dependencies:
     // ...
     build_runner:
     freezed:
+    riverpod_generator:
     json_serializable:
 
 dependencies:
     // ...
     freezed_annotation:
+    flutter_riverpod:
     json_annotation:
+    riverpod_annotation:
+    
 ```
 
 ## Features
@@ -38,5 +42,4 @@ dependencies:
 ### Have build runner watch the freezed annotated classes and generate code on changes
 
 ## Credits
-
-The idea for this extension came from aksharpatel47's extension <https://github.com/aksharpatel47/vscode_flutter_helper>
+The idea for this extension came from mthuong's extension <https://github.com/mthuong/vscode-flutter-riverpod-helper>

@@ -1,34 +1,50 @@
 {
-  "name": "vscode-flutter-freezed-helper",
-  "displayName": "Flutter freezed Helpers",
+  "name": "vscode-flutter-riverpod-helper",
+  "displayName": "Flutter riverpod Helpers",
   "description": "Helper utilities for flutter projects",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "publisher": "mthuong",
   "icon": "media/flutter.png",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mthuong/vscode-flutter-freezed-helper"
+    "url": "https://github.com/mthuong/vscode-flutter-riverpod-helper"
   },
   "engines": {
-    "vscode": "^1.62.0"
+    "vscode": "^1.76.1"
   },
   "categories": [
     "Other"
   ],
+  "keywords": [
+    "build_runner",
+    "freezed",
+    "dart",
+    "flutter",
+    "build"
+  ],
   "activationEvents": [
-    "onCommand:flutterFreezedHelper.genModel",
-    "onCommand:flutterFreezedHelper.genModelWatch"
+    "workspaceContains:**/pubspec.yaml"
   ],
   "main": "./out/extension.js",
   "contributes": {
+    "configuration": {
+      "title": "Flutter riverpod Helpers",
+      "properties": {
+        "FlutterRiverpodHelpers.enableFVM": {
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to enable FVM management, default is false"
+        }
+      }
+    },
     "commands": [
       {
-        "command": "flutterFreezedHelper.genModel",
-        "title": "Flutter Freezed Helper: Code gen for freezed Classes"
+        "command": "flutterRiverpodHelper.genModel",
+        "title": "Flutter Riverpod Helper: Code gen for Riverpod Classes"
       },
       {
-        "command": "flutterFreezedHelper.genModelWatch",
-        "title": "Flutter Freezed Helper: Toggle Watch mode for Code gen for freezed Classes"
+        "command": "flutterRiverpodHelper.genModelWatch",
+        "title": "Flutter Riverpod Helper: Toggle Watch mode for Code gen for Riverpod Classes"
       }
     ],
     "snippets": [
@@ -52,7 +68,7 @@
     "@types/vscode": "^1.36.0",
     "glob": "^7.1.4",
     "mocha": "^6.1.4",
-    "typescript": "^3.3.1",
+    "typescript": "^4.9.5",
     "tslint": "^5.12.1",
     "vscode-test": "^1.0.0-next.0"
   },
