@@ -31,7 +31,7 @@ dependencies:
 
 ![frf](media/frf.gif)
 
-### Snippet for creating freezed annotated model: `frc`
+### Snippet for creating freezed annotated model: `rif`
 
 ![frc](media/frc.gif)
 
