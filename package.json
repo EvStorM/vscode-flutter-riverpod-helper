@@ -2,7 +2,7 @@
   "name": "vscode-flutter-riverpod-helper",
   "displayName": "Flutter riverpod Helpers",
   "description": "Helper utilities for flutter projects",
-  "version": "0.1.5",
+  "version": "0.1.10",
   "publisher": "evils",
   "icon": "media/logo.png",
   "repository": {
@@ -53,6 +53,14 @@
         }
       }
     },
+    "keybindings": [
+      {
+        "command": "FlutterInsertAndRemove.splitExtraction",
+        "key": "ctrl+f10",
+        "mac": "cmd+f10",
+        "when": "editorLangId == dart && config.FlutterRiverpodHelpers.enableInsert"
+      }
+    ],
     "menus": {
       "editor/context": [
         {
@@ -69,6 +77,11 @@
           "command": "flutterRiverpodHelper.insertSibling",
           "when": "editorLangId == dart && config.FlutterRiverpodHelpers.enableInsert",
           "title": "insert a Parent and Sibling node"
+        },
+        {
+          "command": "FlutterInsertAndRemove.splitExtraction",
+          "when": "editorLangId == dart && config.FlutterRiverpodHelpers.enableInsert",
+          "title": "split and extraction Widget"
         }
       ]
     },
@@ -98,6 +111,12 @@
         "when": "editorLangId == dart",
         "group": "1_modification",
         "title": "insert a Parent and Sibling node"
+      },
+      {
+        "command": "FlutterInsertAndRemove.splitExtraction",
+        "when": "editorLangId == dart",
+        "group": "1_modification",
+        "title": "split and extraction Widget"
       }
     ],
     "snippets": [

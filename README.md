@@ -40,6 +40,11 @@ dependencies:
 
 ![insert2](media/in2.gif)
 
+### split and extraction Widget
+
+![splitExtraction](media/splitExtraction.gif)
+
+
 #### If you only want this feature, you can use this [Extension](https://marketplace.visualstudio.com/items?itemName=evils.vscode-flutter-insert-remove-helper)
 
 
