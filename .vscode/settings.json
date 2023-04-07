@@ -1,23 +1,23 @@
 // Place your settings in this file to overwrite default and user settings.
 {
     "files.exclude": {
-        "**/.git": false,
-        "**/.svn": false,
-        "**/.hg": false,
-        "**/CVS": false,
-        "**/.DS_Store": false,
-        "**/Thumbs.db": false,
-        "**/.classpath": false,
-        "**/.project": false,
-        "**/.settings": false,
-        "**/.factorypath": false,
-        "out": false,
-        "**/node_modules": false
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/Thumbs.db": true,
+        "**/.classpath": true,
+        "**/.project": true,
+        "**/.settings": true,
+        "**/.factorypath": true,
+        "out": true,
+        "**/node_modules": true
     },
     "search.exclude": {
         "out": true // set this to false to include "out" folder in search results
     },
     // Turn off tsc task auto detection since we have the necessary tasks as npm scripts
     "typescript.tsc.autoDetect": "off",
-    "workspace.isHidden": false
+    "workspace.isHidden": true
 }

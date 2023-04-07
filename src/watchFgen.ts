@@ -7,7 +7,6 @@ enum State {
   watching,
   idle,
 }
-
 let _channel: vscode.OutputChannel;
 export function getOutputChannel(ChannelName: string): vscode.OutputChannel {
   if (!_channel) {
@@ -15,26 +14,23 @@ export function getOutputChannel(ChannelName: string): vscode.OutputChannel {
   }
   return _channel;
 }
-
-export class BuildRunnerWatch {
-  constructor(context: vscode.ExtensionContext, id: string, watchProcess: ChildProcess, enableFVM: string) {
+export class FgenRunnerWatch {
+  constructor(context: vscode.ExtensionContext, id: string, watchProcess: ChildProcess) {
     this.statusBar = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 0);
     this.statusBar.command = id;
-    this.statusBar.tooltip = "Watch with Flutter build_runner";
+    this.statusBar.tooltip = "Watch with Flutter Fgen";
     this.statusBar.text = this.text();
     this.watchProcess = watchProcess;
-    this.enableFVM = enableFVM ?? "flutter";
     this.myCommandId = id;
     context.subscriptions.push(this.statusBar);
   }
   state: State = State.idle;
-  enableFVM: string;
   watchProcess: ChildProcess;
   myCommandId: string;
-  ChannelName = "Flutter Build Runner";
-  readonly watchString = "$(eye) Watch";
-  readonly loadingString = "$(loading~spin) Initializing";
-  readonly removeWatchString = "$(eye-closed) Remove watch";
+  ChannelName = "Flutter Fgen";
+  readonly watchString = "$(eye) Fgen Watch";
+  readonly loadingString = "$(loading~spin) Fgen Initializing";
+  readonly removeWatchString = "$(eye-closed) Fgen Remove watch";
 
   readonly statusBar: vscode.StatusBarItem;
 
@@ -75,8 +71,8 @@ export class BuildRunnerWatch {
     //   this.watchProcess.kill();
     //   this.setState(State.idle);
     // } else {
-    vscode.window.showInformationMessage("Started Codegen Process");
-    this.watchProcess = spawn(this.enableFVM, ["pub", "run", "build_runner", "watch", "--delete-conflicting-outputs"], {
+    vscode.window.showInformationMessage("Started Fgen Process");
+    this.watchProcess = spawn("fgen", {
       shell: true,
       cwd: vscode.workspace.rootPath,
       //   detached: true
@@ -94,7 +90,7 @@ export class BuildRunnerWatch {
       getOutputChannel(this.ChannelName).appendLine(`child process exited with code ${code}`);
       this.setState(State.idle);
       let restart = "restart";
-      vscode.window.showWarningMessage("Flutter build_runner exited, Need to restart?", restart).then((selection) => {
+      vscode.window.showWarningMessage("Fgen exited, Need to restart?", restart).then((selection) => {
         if (selection === restart) {
           vscode.commands.executeCommand(this.myCommandId);
         }
@@ -104,7 +100,7 @@ export class BuildRunnerWatch {
     // }
   }
   removeWatch(): void {
-    vscode.window.showInformationMessage("stop Codegen Process");
+    vscode.window.showInformationMessage("stop Fgen Process");
     if (this.watchProcess && !this.watchProcess.killed) {
       kill(this.watchProcess.pid);
       this.watchProcess.kill();

@@ -2,9 +2,9 @@
   "name": "vscode-flutter-riverpod-helper",
   "displayName": "Flutter riverpod Helpers",
   "description": "Helper utilities for flutter projects",
-  "version": "0.1.2",
+  "version": "0.1.5",
   "publisher": "evils",
-  "icon": "media/flutter.png",
+  "icon": "media/logo.png",
   "repository": {
     "type": "git",
     "url": "https://github.com/EvStorM/vscode-flutter-riverpod-helper"
@@ -19,13 +19,19 @@
     "build_runner",
     "freezed",
     "dart",
+    "riverpod",
     "flutter",
+    "freezed_annotation",
+    "riverpod_annotation",
     "build"
   ],
   "activationEvents": [
     "workspaceContains:**/pubspec.yaml"
   ],
   "main": "./out/extension.js",
+  "extensionDependencies": [
+    "Dart-Code.dart-code"
+  ],
   "contributes": {
     "configuration": {
       "title": "Flutter riverpod Helpers",
@@ -34,8 +40,37 @@
           "type": "boolean",
           "default": false,
           "description": "Whether to enable FVM management, default is false"
+        },
+        "FlutterRiverpodHelpers.enableFgen": {
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to enable flutter_asset_generator to manage static resources, default is false"
+        },
+        "FlutterRiverpodHelpers.enableInsert": {
+          "type": "boolean",
+          "default": true,
+          "description": "Whether to enable flutter node insertion and removal, default is true"
         }
       }
+    },
+    "menus": {
+      "editor/context": [
+        {
+          "command": "flutterRiverpodHelper.insertParent",
+          "when": "editorLangId == dart && config.FlutterRiverpodHelpers.enableInsert",
+          "title": "insert a Parent node"
+        },
+        {
+          "command": "flutterRiverpodHelper.removeParent",
+          "when": "editorLangId == dart && config.FlutterRiverpodHelpers.enableInsert",
+          "title": "remove a Parent node"
+        },
+        {
+          "command": "flutterRiverpodHelper.insertSibling",
+          "when": "editorLangId == dart && config.FlutterRiverpodHelpers.enableInsert",
+          "title": "insert a Parent and Sibling node"
+        }
+      ]
     },
     "commands": [
       {
@@ -45,6 +80,24 @@
       {
         "command": "flutterRiverpodHelper.genModelWatch",
         "title": "Flutter Riverpod Helper: Toggle Watch mode for Code gen for Riverpod Classes"
+      },
+      {
+        "command": "flutterRiverpodHelper.insertParent",
+        "when": "editorLangId == dart",
+        "group": "1_modification",
+        "title": "insert a Parent node"
+      },
+      {
+        "command": "flutterRiverpodHelper.removeParent",
+        "when": "editorLangId == dart",
+        "group": "1_modification",
+        "title": "remove a Parent node"
+      },
+      {
+        "command": "flutterRiverpodHelper.insertSibling",
+        "when": "editorLangId == dart",
+        "group": "1_modification",
+        "title": "insert a Parent and Sibling node"
       }
     ],
     "snippets": [
@@ -68,11 +121,12 @@
     "@types/vscode": "^1.36.0",
     "glob": "^7.1.4",
     "mocha": "^6.1.4",
-    "typescript": "^4.9.5",
     "tslint": "^5.12.1",
+    "typescript": "^4.9.5",
     "vscode-test": "^1.0.0-next.0"
   },
   "dependencies": {
-    "tree-kill": "^1.2.1"
+    "tree-kill": "^1.2.1",
+    "xregexp": "^5.1.1"
   }
 }

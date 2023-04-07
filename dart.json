@@ -1,7 +1,7 @@
 {
   "Create a riverpod Provider Class": {
     "prefix": "ric",
-    "body": ["@riverpod", "class $1 extends _$$1 {", "@override", "$1 build() {", "\t return $1;", "}", "", "}"],
+    "body": ["@riverpod", "class $1 extends _$$1 {", "@override", "$2 build() {", "\t return $2();", "}", "", "}"],
     "description": "Creates a riverpod Provider Class inside a dartlang file. "
   },
   "Create a riverpod Provider return": {
@@ -13,17 +13,17 @@
     "prefix": "ria",
     "body": [
       "@riverpod",
-      "class Async$1 extends _$Async$1 {",
+      "class Async$1 extends _$$Async$1 {",
       "",
-      "Future<$1> _fetch$1() async {",
-      "final json = await http.get('api/todos');",
-      "final data = jsonDecode(json) as List<Map<String, dynamic>>;",
-      "return data.map((item) => $1.fromJson(item)).toList();",
-      "}",
-      "@override",
-      "FutureOr<$1> build() async {",
+      "\tFuture<$1> _fetch$1() async {",
+      "\t\tfinal json = await http.get('api/todos');",
+      "\t\tfinal data = jsonDecode(json) as List<Map<String, dynamic>>;",
+      "\t\treturn data.map((item) => $1.fromJson(item)).toList();",
+      "\t}",
+      "\t@override",
+      "\tFutureOr<$1> build() async {",
       "\t return _fetch$1();",
-      "}",
+      "\t}",
       "",
       "}"
     ],
@@ -74,7 +74,7 @@
       "}",
       "",
       "@riverpod",
-      "class $1Data extends _$$1Data {",
+      "class $1 extends _$$1 {",
       "@override",
       "$1 build() {",
       "\t return $1();",
@@ -112,6 +112,25 @@
       "\tfactory $1() = _$1;",
       "",
       "\tfactory $1.fromJson(Map<String, dynamic> json) => _$$1FromJson(json);",
+      "}"
+    ],
+    "description": "Setup a file which will have freezed annotated classes."
+  },
+  "As opposed to with provider": {
+    "prefix": "fcasync",
+    "body": [
+      "import 'package:hooks_riverpod/hooks_riverpod.dart';",
+      "",
+      "class $1 extends ConsumerWidget {",
+      "\t@override",
+      "\tWidget build(BuildContext context, WidgetRef ref) {",
+      "\t final configs = ref.watch(configurationsProvider);",
+      "\treturn configs.when(",
+      "\tloading: () => const CircularProgressIndicator(),",
+      "\terror: (err, stack) => Text('Error $err'),",
+      "\tdata: (configs) => Text('data: ${configs.host}'),",
+      ");",
+      "}",
       "}"
     ],
     "description": "Setup a file which will have freezed annotated classes."

@@ -24,6 +24,25 @@ dependencies:
     riverpod_annotation:
 ```
 
+
+
+## New Features
+
+### insert a Parent node
+
+![insert1](media/in1.gif)
+
+### remove a Parent node
+
+![remove](media/remove.gif)
+
+### insert a Parent and Sibling node
+
+![insert2](media/in2.gif)
+
+#### If you only want this feature, you can use this [Extension](https://marketplace.visualstudio.com/items?itemName=evils.vscode-flutter-insert-remove-helper)
+
+
 ## Features
 
 ### Snippet for setting up a file with freezed annotated classes: `frf`
@@ -44,6 +63,9 @@ dependencies:
 ![build_runner watch](media/screen2.png)
 
 ### Have build runner watch the freezed and riverpod annotated classes and generate code on changes
+
+
+
 
 ## Credits
 The idea for this extension came from mthuong's extension <https://github.com/mthuong/vscode-flutter-riverpod-helper>
